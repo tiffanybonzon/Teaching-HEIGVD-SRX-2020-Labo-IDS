@@ -382,6 +382,17 @@ Ecrire une règle qui journalise (sans alerter) un message à chaque fois que Wi
 
 **Reponse :**  
 
+```bash
+log tcp 192.168.1.31 any -> 91.198.174.192 443 (msg:"Wiki from my PC"; sid:4000016; rev:1)
+```
+
+- Une des addresses de Wikipedia peut être optenue grâce à la commande ping (91.198.174.192)
+  - Utiliser une seul addresse IP est unreliable car Wikipedia a plusieures addresses, et également des Iv6
+- Le log se trouve dans `/var/log/snort/snort.log.1586...
+- Seul les paquets venant du post précisé (192.168.1.31) depuis n'importe quel port vers l'addresse indiquée de Wikipedia (91.198.174.192:443) sont journalisés, le message ("Wiki from my PC") n'apparaît pas dans le .pcap
+
+![](images/Snort_Wiki.png)
+
 ---
 
 --
