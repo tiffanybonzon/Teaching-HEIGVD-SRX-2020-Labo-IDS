@@ -514,11 +514,7 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 
 ---
 
-**Reponse :**  
-
-### A PRECISER 
-
-Surement oui car il analyse tout le fichier d'un coup. Donc il n'écoute pas le réseau.
+**Reponse :**  L'analyse se fait de la même manière avec le .pcap qu'en temps réel
 
 ---
 
@@ -526,11 +522,9 @@ Surement oui car il analyse tout le fichier d'un coup. Donc il n'écoute pas le 
 
 ---
 
-**Reponse :**  
+**Reponse :**  Oui les alertes sont toujours enregistrées
 
 ---
-
---
 
 ### Contournement de la détection
 
@@ -540,11 +534,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 ---
 
-**Reponse :**  
-
-https://tools.kali.org/information-gathering/fragroute
-
-Permet de modifier/intercepter et de récrire du traffique réseau destiné a un hote. 
+**Reponse :**  Permet de modifier/intercepter et de récrire du traffique réseau destiné a un hôte. (FROM: https://tools.kali.org/information-gathering/fragroute)
 
 ---
 
@@ -553,11 +543,7 @@ Permet de modifier/intercepter et de récrire du traffique réseau destiné a un
 
 ---
 
-**Reponse :**  
-
-### a preciser
-
-Fragroute intercepte le traffic réseau (comme snort) et modifie les paquets à la volée.
+**Reponse :**  Ils essayent d'échapper à l'IDS en utilisant des paquets fragmentés. 
 
 ---
 
@@ -565,11 +551,7 @@ Fragroute intercepte le traffic réseau (comme snort) et modifie les paquets à 
 
 ---
 
-**Reponse :**  
-
-https://www.snort.org/faq/readme-frag3
-
-
+**Reponse :**  C'est un module de défragmentation pour Snort (FROM: https://www.snort.org/faq/readme-frag3)
 
 ---
 
@@ -586,7 +568,7 @@ Reprendre l'exercice de la partie [Trouver votre nom](#trouver-votre-nom-). Essa
 ---
 
 
-Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocessor` et refaire la tentative.
+Modifier le fichier `myrules.rules` pour que Snort utiliser le `Frag3 Preprocessor` et refaire la tentative.
 
 
 **Question 24: Quel est le résultat ?**
@@ -606,7 +588,6 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 
 ---
 
-
 **Question 26: A quoi sert le `Sensitive Data Preprocessor` ?**
 
 ---
@@ -617,8 +598,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 
 ### Conclusions
 
-
-**Question 27: Donnez-nous vos conclusions et votre opinion à propos de snort**
+**Question 27: Donnez-nous vos conclusions et votre opinion à propos de Snort**
 
 ---
 
