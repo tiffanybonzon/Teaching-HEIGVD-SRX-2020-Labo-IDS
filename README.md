@@ -1,5 +1,7 @@
 # Teaching-HEIGVD-SRX-2020-Laboratoire-IDS
 
+**Auteurs:** Bonzon Tiffany
+
 **Ce travail de laboratoire est à faire en équipes de 2 personnes** (oui... en remote...). Je vous laisse vous débrouiller ;-)
 
 **ATTENTION : Commencez par créer un Fork de ce repo et travaillez sur votre fork.**
@@ -287,6 +289,12 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 ---
 
 **Reponse :**  
+
+Ils permettent d'étandre les fonctionnalités en permettant aux utilisateurs d'utiliser des plugins facilement. Les préprocesseurs osnt exécutés avant la détection mais parès le décodage du paquet. Les préprocesseurs permettent que les paquets soient analysés et modifiés
+
+[1]: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html	"Snort: 2.2 Preprocessors"
+
+
 
 ---
 
