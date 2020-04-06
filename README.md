@@ -1,6 +1,6 @@
 # Teaching-HEIGVD-SRX-2020-Laboratoire-IDS
 
-**Auteurs:** Bonzon Tiffany
+**Auteurs:** Bonzon Tiffany & Cuénoud Robin
 
 **Ce travail de laboratoire est à faire en équipes de 2 personnes** (oui... en remote...). Je vous laisse vous débrouiller ;-)
 
