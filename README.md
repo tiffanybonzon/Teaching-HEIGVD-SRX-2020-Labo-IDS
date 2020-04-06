@@ -502,9 +502,7 @@ Lancer Wireshark et faire une capture du trafic sur l'interface connectée au br
 
 ---
 
-**Reponse :**  `snort -r foo.pcap` ou `foo.pcap` est la capture, ou bien `snort -r foo.log.xxxxxx` pour ouvrir un log
-
-(FROM: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node8.html)
+**Reponse :**  `snort -r foo.pcap` ou `foo.pcap` est la capture, ou bien `snort -r foo.log.xxxxxx` pour ouvrir un log. (FROM: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node8.html)
 
 ---
 
@@ -543,7 +541,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 ---
 
-**Reponse :**  Ils essayent d'échapper à l'IDS en utilisant des paquets fragmentés. 
+**Reponse :**  Ils essayent d'échapper à l'IDS en utilisant fragmentants les paquets. 
 
 ---
 
@@ -602,7 +600,7 @@ Modifier le fichier `myrules.rules` pour que Snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse :**  Snort est un outil puissant mais la difficulté est dans l'écriture des règles, Pour les cas simples, c'est facile, mais dès que les règles deviennent plus spécifiques / poussées, leurs configuration peut vite devenir un cauchemar. Heureusement il y a une grande communauté qui produit des règles gratuites et payantes, ce qui fait de Snort un parfait candidat pour les entreprises si elles sont prêtes à laisser le temps aux admins de le prendre en main.
 
 ---
 
