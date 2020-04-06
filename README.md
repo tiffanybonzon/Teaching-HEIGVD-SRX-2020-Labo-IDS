@@ -387,15 +387,13 @@ log tcp 192.168.1.31 any -> 91.198.174.192 443 (msg:"Wiki from my PC"; sid:40000
 ```
 
 - Une des addresses de Wikipedia peut être optenue grâce à la commande ping (91.198.174.192)
-  - Utiliser une seul addresse IP est unreliable car Wikipedia a plusieures addresses, et également des Iv6
-- Le log se trouve dans `/var/log/snort/snort.log.1586...
+  - Utiliser une seul addresse IP est unreliable car Wikipedia a plusieures addresses, et également des IPv6
+- Le log se trouve dans `/var/log/snort/snort.log.xxxxxxxxxx`, où `xxxxxxxxxx` est l'heure Unix du commencement du journal.
 - Seul les paquets venant du post précisé (192.168.1.31) depuis n'importe quel port vers l'addresse indiquée de Wikipedia (91.198.174.192:443) sont journalisés, le message ("Wiki from my PC") n'apparaît pas dans le .pcap
 
 ![](images/Snort_Wiki.png)
 
 ---
-
---
 
 ### Detecter un ping d'un autre système
 
@@ -407,10 +405,13 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
-### A PRECISER 
+```bash
+alert icmp !192.168.1.31 any -> 192.168.1.31 any (msg:"Ping vers PC"; itype:8; sid:4000017; rev:1)
+```
 
-alert icmp !{notre adresse ip)  any -> (notre adresse ip) (port du ping)
-( msg: "ping detected";)
+Cette règle alerte des ECHO(8) vers la machine 192.168.1.31. Le `itype:8` sert à ne pas alerter des réponses aux ping provenant de notre machine.
+
+![](images/Snort_Ping.png)
 
 ---
 
@@ -421,7 +422,7 @@ alert icmp !{notre adresse ip)  any -> (notre adresse ip) (port du ping)
 
 **Reponse :**  
 
-Avec le !(notre adresse ip) , l'operateur négation dis a snort toutes les IP sauf celle indiquée qui est la notre.
+Avec le `!192.168.1.31` , l'operateur de négation dis a Snort d'alerter pour toutes les IP sauf celle indiquée qui est la notre.
 
 ---
 
@@ -436,16 +437,16 @@ Dans `/var/log/snort/alerts` et le packet correspondant sera dans `/var/log/snor
 
 ---
 
-
 **Question 12: Qu'est-ce qui a été journalisé ?**
 
 ---
 
 **Reponse :**  
 
----
+- Dans le alert: L'identificateur unique de la règle, Le message "ping vers PC", sa priorité, la date-heure ainsi que l'IP source du ping, l'IP de destination du ping, ainsi que des informations ICMP
+- Dans le snort.log.xx: L'heure, l'IP source, l'IP de destination, le type de requête ICMP. Le .pcap contient les paquets qui ont levés l'alerte.
 
-Le message ping detected et le paquet du ping dans le fichier correspondant. 
+---
 
 ### Detecter les ping dans les deux sens
 
@@ -455,12 +456,18 @@ Modifier votre règle pour que les pings soient détectés dans les deux sens.
 
 ---
 
-**Reponse :**  
+**Reponse :**  On remplace !IP par any, on change l'opérateur de `-> ` à `<>` . On garde le `itype:8` pour n'alerter que des requêtes et pas des réponses
+
+```bash
+alert icmp any any <> 192.168.1.31 any (msg:"Ping detected"; itype:8; sid:4000018; rev:1)
+```
+
+![](images/Snort_Ping_2.png)
 
 ---
 
 
-On enlève l'opérateur ! donc juste `alert icmp any -> any (port du ping) (msg: "ping detected")
+
 
 ### Detecter une tentative de login SSH
 
