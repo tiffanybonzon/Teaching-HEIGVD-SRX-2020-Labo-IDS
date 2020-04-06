@@ -290,11 +290,7 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 
 **Reponse :**  
 
-Ils permettent d'étandre les fonctionnalités en permettant aux utilisateurs d'utiliser des plugins facilement. Les préprocesseurs osnt exécutés avant la détection mais parès le décodage du paquet. Les préprocesseurs permettent que les paquets soient analysés et modifiés
-
-[1]: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html	"Snort: 2.2 Preprocessors"
-
-
+Ils permettent d'étandre les fonctionnalités en permettant aux utilisateurs d'utiliser des plugins facilement. Les préprocesseurs osnt exécutés avant la détection mais parès le décodage du paquet. Les préprocesseurs permettent que les paquets soient analysés et modifiés. (FROM: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node17.html)
 
 ---
 
@@ -302,11 +298,9 @@ Ils permettent d'étandre les fonctionnalités en permettant aux utilisateurs d'
 
 ---
 
-**Reponse :**  
+**Reponse :**  Car les préprocesseurs ne sont pas activés dans notre fichier de configuration maison. Nous n'avons pour le moment qu'un include (icmp2.rules)
 
 ---
-
---
 
 ### Trouver votre nom :
 
@@ -318,7 +312,7 @@ alert tcp any any -> any any (msg:"Mon nom!"; content:"Rubinstein"; sid:4000015;
 
 ---
 
-**Reponse :**  
+**Reponse :**  Cette règle crée une alerte nomée "Mon nom!" lorsqu'un paquet TCP venant de n'importe quelle addresse/port vers n'importe quelle addresse/port contient la chaîne "Rubinstein"
 
 ---
 
@@ -332,7 +326,9 @@ sudo snort -c myrules.rules -i eth0
 
 ---
 
-**Reponse :**  
+**Reponse :**  Au début Snort s'initialise (plugins, préprocesseurs, fichier de règles). Puis il affiche `WARNING: No preprocessors configured for policy 0.` car nous n'avons toujours pas ajouté de préprocesseurs dans notre configuration. Et finalement il affiche des statistiques sur les paquets reçus, analysés, dropped, etc., sur les protocoles, et sur les actions prises. 
+
+Ici aucune action n'a été prise car aucun paquet contenant le nom précisé dans `content` n'a été reçu.
 
 ---
 
@@ -342,7 +338,7 @@ Aller à un site web contenant dans son text votre nom ou votre mot clé que vou
 
 ---
 
-**Reponse :**  
+**Reponse :**  L'affichage dans le terminal ne change pas (sauf pour les statistiques sur les actions). Pour voir les alertes il faut afficher les logs.
 
 ---
 
@@ -352,7 +348,7 @@ Arrêter Snort avec `CTRL-C`.
 
 ---
 
-**Reponse :**  
+**Reponse :**  Quand on arrête Snort, on voit des statistiques. On voit le temps de traitement des paquets, le nombre de paquets traités, les paquets traités par seconde. On voit également des informations sur la mémoire utilisée, les entrées / sorties totales (paquets reçus, analysés, droppés, filtrés, les paquets qui ressortent, ainsi que les paquets injectés). On a également des statistiques sur les protocoles, et sur les actions prises (alertes, log, ..)
 
 ---
 
@@ -365,10 +361,16 @@ Aller au répertoire /var/log/snort. Ouvrir le fichier `alert`. Vérifier qu'il 
 
 **Reponse :**  
 
+- La première ligne indique l'identification de la règle (`sid`+`rev`) ainsi que le nom choisi (`msg`)
+- La deuxième indique la priorité (pas définie dans notre règle donc 0)
+- La troisième contient la date-heure d'accès ainsi que la source (addresse+port) et la destination (addresse+port)
+- La quatrième contient les informations de l'entête IP du paquet
+- La cinquième contient les informations de l'entête TCP du paquet
+- La sixième contient les options TCP
+
+![](images/log_monNom.png)
+
 ---
-
-
---
 
 ### Detecter une visite à Wikipedia
 
