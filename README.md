@@ -590,7 +590,7 @@ Modifier le fichier `myrules.rules` pour que Snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse :**   Ce préprocesseur détecte et filtre les Personally Identifiable Information (PII) telles que les numéros de cartes de crédits, les numéros de sécurité sociale (US) et les addresses email. (FROM: https://snort.org/faq/readme-sensitive_data)
 
 ---
 
