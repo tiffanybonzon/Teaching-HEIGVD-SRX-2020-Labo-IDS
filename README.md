@@ -490,7 +490,9 @@ alert tcp any any -> 192.168.1.13 22 (msg:"connection ssh entrante"; sid:4000019
 
 ---
 
-**Reponse :**  ![](images/Snort_SSH.png)
+**Reponse :**  
+
+![](images/Snort_SSH.png)
 
 ---
 
@@ -556,12 +558,17 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 Reprendre l'exercice de la partie [Trouver votre nom](#trouver-votre-nom-). Essayer d'offusquer la détection avec `fragroute`.
 
-
 **Question 23: Quel est le résultat de votre tentative ?**
 
 ---
 
-**Reponse :**  
+**Reponse :**  Nous n'avons malheureusement pas pu lancer fragroute `fragroute: error while loading shared libraries: libevent-2.0.so.5: cannot open shared object file: No such file or directory`, libevent est pourtant présent sur le système.
+
+```bash
+sudo snort -c myrules.rules -i eth0 -A console
+```
+
+ne devrait pas affiche les alertes
 
 ---
 
@@ -573,7 +580,7 @@ Modifier le fichier `myrules.rules` pour que Snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse :**  Une fois le module chargé, les alertes devraient réapparaitre
 
 ---
 
