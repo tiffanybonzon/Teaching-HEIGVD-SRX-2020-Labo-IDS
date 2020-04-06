@@ -582,7 +582,7 @@ Modifier le fichier `myrules.rules` pour que Snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse :**  Le traffic chiffré est ignoré de base par Snort. Ce préprocesseur, va inspecter ces paquets  et déterminer s'il doit continuer de les inspecter ou non. (FROM: https://snort.org/faq/readme-ssl)
 
 ---
 
