@@ -450,7 +450,7 @@ Dans `/var/log/snort/alerts` et le packet correspondant sera dans `/var/log/snor
 
 ### Detecter les ping dans les deux sens
 
-Modifier votre règle pour que les pings soient détectés dans les deux sens.
+Modifier votre règle pour que les pings soient détectés dans l::es deux sens.
 
 **Question 13: Qu'est-ce que vous avez modifié pour que la règle détecte maintenant le trafic dans les deux senses ?**
 
@@ -477,11 +477,11 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 
 ---
 
-**Reponse :**  
+**Reponse :**  Le service ssh de notre machine tourne par défaut sur le port 22 donc on peut regarder les connections entrentes sur le port 22 
 
-Le service ssh de notre machine tourne par défaut sur le port 22 donc on peut regarder les connections entrentes sur le port 22 
-
-alert any -> (adresse locale) 22 (msg:"connection ssh entrante")
+```bash
+alert tcp any any -> 192.168.1.13 22 (msg:"connection ssh entrante"; sid:4000019; rev:1)
+```
 
 ---
 
@@ -490,11 +490,9 @@ alert any -> (adresse locale) 22 (msg:"connection ssh entrante")
 
 ---
 
-**Reponse :**  
+**Reponse :**  ![](images/Snort_SSH.png)
 
 ---
-
---
 
 ### Analyse de logs
 
@@ -504,13 +502,9 @@ Lancer Wireshark et faire une capture du trafic sur l'interface connectée au br
 
 ---
 
-**Reponse :**  
+**Reponse :**  `snort -r foo.pcap` ou `foo.pcap` est la capture, ou bien `snort -r foo.log.xxxxxx` pour ouvrir un log
 
-FROM: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node8.html
-
-`snort -r foo.pcap` ou `foo.pcap` est la capture 
-
-ou bien `snort -r foo.log.xxxxxx` pour ouvrir un log
+(FROM: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node8.html)
 
 ---
 
