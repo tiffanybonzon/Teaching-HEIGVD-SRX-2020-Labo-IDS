@@ -396,6 +396,11 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
+### A PRECISER 
+
+alert icmp !{notre adresse ip)  any -> (notre adresse ip) (port du ping)
+( msg: "ping detected";)
+
 ---
 
 
@@ -405,6 +410,8 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 **Reponse :**  
 
+Avec le !(notre adresse ip) , l'operateur négation dis a snort toutes les IP sauf celle indiquée qui est la notre.
+
 ---
 
 
@@ -413,6 +420,8 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 ---
 
 **Reponse :**  
+
+Dans `/var/log/snort/alerts` et le packet correspondant sera dans `/var/log/snort/snort.log.xxxxxxxxxx` où `xxxxxxxxxx` est l'heure Unix du commencement du journal.
 
 ---
 
@@ -425,7 +434,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 ---
 
---
+Le message ping detected et le paquet du ping dans le fichier correspondant. 
 
 ### Detecter les ping dans les deux sens
 
@@ -440,7 +449,7 @@ Modifier votre règle pour que les pings soient détectés dans les deux sens.
 ---
 
 
---
+On enlève l'opérateur ! donc juste `alert icmp any -> any (port du ping) (msg: "ping detected")
 
 ### Detecter une tentative de login SSH
 
@@ -451,6 +460,10 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 ---
 
 **Reponse :**  
+
+Le service ssh de notre machine tourne par défaut sur le port 22 donc on peut regarder les connections entrentes sur le port 22 
+
+alert any -> (adresse locale) 22 (msg:"connection ssh entrante")
 
 ---
 
@@ -475,6 +488,12 @@ Lancer Wireshark et faire une capture du trafic sur l'interface connectée au br
 
 **Reponse :**  
 
+FROM: http://manual-snort-org.s3-website-us-east-1.amazonaws.com/node8.html
+
+`snort -r foo.pcap` ou `foo.pcap` est la capture 
+
+ou bien `snort -r foo.log.xxxxxx` pour ouvrir un log
+
 ---
 
 Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshark.
@@ -484,6 +503,10 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 ---
 
 **Reponse :**  
+
+### A PRECISER 
+
+Surement oui car il analyse tout le fichier d'un coup. Donc il n'écoute pas le réseau.
 
 ---
 
@@ -507,6 +530,10 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 **Reponse :**  
 
+https://tools.kali.org/information-gathering/fragroute
+
+Permet de modifier/intercepter et de récrire du traffique réseau destiné a un hote. 
+
 ---
 
 
@@ -516,14 +543,21 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 **Reponse :**  
 
----
+### a preciser
 
+Fragroute intercepte le traffic réseau (comme snort) et modifie les paquets à la volée.
+
+---
 
 **Question 22: Qu'est-ce que le `Frag3 Preprocessor` ? A quoi ça sert et comment ça fonctionne ?**
 
 ---
 
 **Reponse :**  
+
+https://www.snort.org/faq/readme-frag3
+
+
 
 ---
 
